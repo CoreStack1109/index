@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FreshGrocer - Grocery Home Delivery</title>
+  <style>
+    /* Reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f6f9f4;
+      color: #333;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Header */
+    header {
+      background: #2e7d32;
+      color: #e6f4ea;
+      padding: 20px 0;
+      box-shadow: 0 3px 6px rgba(46, 125, 50, 0.3);
+    }
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    header h1 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+    nav ul li a {
+      font-weight: 600;
+      color: #e6f4ea;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+    nav ul li a:hover {
+      background: #66bb6a;
+    }
+
+    /* Hero section */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1604908177522-ecfac88f7c6d?auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;
+      height: 400px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(46, 125, 50, 0.6);
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+    .hero-content h2 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      font-weight: 800;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    }
+    .btn-primary {
+      background: #66bb6a;
+      color: white;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 5px 10px rgba(102,187,106,0.4);
+      transition: background 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: #4caf50;
+    }
+
+    /* Section: Grocery items */
+    section.items {
+      padding: 50px 0;
+      background: white;
+    }
+    section.items h3 {
+      text-align: center;
+      font-size: 2.4rem;
+      margin-bottom: 40px;
+      color: #2e7d32;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .item-card {
+      background: #f0f8f3;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(102,187,106,0.2);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .item-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(102,187,106,0.35);
+    }
+    .item-card img {
+      max-width: 120px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    .item-card h4 {
+      color: #2e7d32;
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+    }
+    .item-card p {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 15px;
+    }
+    .item-card .price {
+      font-weight: 700;
+      color: #388e3c;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+    .btn-secondary {
+      background: #a5d6a7;
+      color: #2e7d32;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .btn-secondary:hover {
+      background: #81c784;
+    }
+
+    /* Footer */
+    footer {
+      background: #2e7d32;
+      color: #e6f4ea;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 50px;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      .hero-content h2 {
+        font-size: 2.2rem;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 10px;
+      }
+      header .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+       <marquee> <h1>FreshGrocer</h1>  </marquee>
+       <nav>
+        <ul>
+          <li><a href="#items">Shop</a></li>
+          <li><a href="#how-it-works">How it Works</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+     <h2>Fresh Grocery Delivered To Your Doorstep</h2> 
+      <p>Quality produce, everyday essentials, and more — all just a click away.</p>
+      <button class="btn-primary">Order Now</button>
+    </div>
+  </section>
+
+  <section class="items" id="items">
+    <h3>Our Popular Grocery Items</h3>
+    <div class="items-grid">
+      <div class="item-card">
+       
+        <img src="https://th.bing.com/th/id/OIP.iYflxy7TJ08LSCT65kvKyQHaE8?w=243&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7"  alt ="Fresh apples" width="350" height="200">
+
+        <h4>Fresh Apples</h4>
+        <p>Crisp, juicy apples sourced from local farms.</p>
+       
+        <button class="btn-secondary">Add to Cart</button>
+      </div>
+      <div class="item-card">
+        <img src="https://th.bing.com/th/id/OIP.C1Mcczsmx9BJtbbbXPnDFAHaEK?w=331&h=187&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="Organic Bananas" width="1000" height="200" />
+        <h4>Organic Bananas</h4>
+        <p>Sweet and ripe organic bananas perfect for snacking.</p>
+        <button class="btn-secondary">Add to Cart</button>
+      </div>
+      <div class="item-card">
+        <img src="https://th.bing.com/th/id/OIP.P0kFHeTdC0DtZ49pZRRmQAHaEs?w=288&h=183&c=7&r=0&o=7&dpr=1.1&pid=1.7&rm=3" alt="Fresh Tomatoes" width="350" height="200" />
+        <h4>Fresh Tomatoes</h4>
+        <p>Vibrant, ripe tomatoes ideal for salads and cooking.</p>
+        <button class="btn-secondary">Add to Cart</button>
+      </div>
+      <div class="item-card">
+        <img src="https://th.bing.com/th/id/OIP.SWFu5H8fMcb3mBxdjQdKQAHaFC?w=276&h=188&c=7&r=0&o=7&dpr=1.1&pid=1.7&rm=3" alt="Organic Carrots" width="350" height="200"/>
+        <h4>Organic Carrots</h4>
+        <p>Crunchy, sweet carrots grown without pesticides.</p>
+        <button class="btn-secondary">Add to Cart</button>
+      </div>
+      <div class="item-card">
+        <img src="https://th.bing.com/th/id/OIP.7T6irKj-GH5FK8bLJhbERgHaHa?w=195&h=195&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="Fresh Milk" width="350" height="200"/>
+        <h4>Fresh Milk</h4>
+        <p>Pure and creamy milk from trusted dairy farms.</p>
+        <button class="btn-secondary">Add to Cart</button>
+      </div>
+      <div class="item-card">
+        <img src="https://th.bing.com/th/id/OIP.CJVIUZGoFUidosxyFLpQFQHaEx?w=289&h=186&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="Bread Loaf" width="350" height="200" />
+        <h4>Whole Wheat Bread</h4>
+        <p>Freshly baked, wholesome whole wheat bread.</p>
+        <button class="btn-secondary">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" style="padding: 50px 20px; max-width: 1100px; margin: auto;">
+    <h3 style="text-align: center; color: #2e7d32; font-weight: 800; margin-bottom: 40px;">How It Works</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;">
+      <div style="flex: 1 1 280px; background: #e8f5e9; border-radius: 12px; padding: 25px; box-shadow: 0 4px 8px rgba(46,125,50,0.15); text-align:center;">
+        <h4 style="color: #388e3c; margin-bottom: 15px;">1. Browse Products</h4>
+        <p>Select from a wide range of fresh grocery items and essentials.</p>
+      </div>
+      <div style="flex: 1 1 280px; background: #e8f5e9; border-radius: 12px; padding: 25px; box-shadow: 0 4px 8px rgba(46,125,50,0.15); text-align:center;">
+        <h4 style="color: #388e3c; margin-bottom: 15px;">2. Place Your Order</h4>
+        <p>Add items to your cart and checkout quickly and securely.</p>
+      </div>
+      <div style="flex: 1 1 280px; background: #e8f5e9; border-radius: 12px; padding: 25px; box-shadow: 0 4px 8px rgba(46,125,50,0.15); text-align:center;">
+        <h4 style="color: #388e3c; margin-bottom: 15px;">3. Delivered Fresh</h4>
+        <p>Get your groceries delivered fresh to your doorstep on time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="background:#f1f8e9; padding: 40px 20px;">
+    <div class="container" style="max-width:700px; text-align:center;">
+      <h3 style="color:#2e7d32; font-weight:800; margin-bottom:20px;">Contact Us</h3>
+      <p>Questions? Feedback? Reach out to our friendly support team!</p>
+      <form style="margin-top:30px; display:flex; flex-direction: column; gap: 15px;">
+        <input type="text" placeholder="Your Name" required style="padding:12px; border:1px solid #ccc; border-radius:6px; font-size:1rem;" />
+        <input type="email" placeholder="Your Email" required style="padding:12px; border:1px solid #ccc; border-radius:6px; font-size:1rem;" />
+        <textarea placeholder="Your Message" rows="4" required style="padding:12px; border:1px solid #ccc; border-radius:6px; font-size:1rem;"></textarea>
+        <button type="submit" class="btn-primary" style="max-width: 150px; margin: auto;">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 FreshGrocer. All rights reserved.
+  </footer>
+
+</body>
+</html>
